@@ -1,0 +1,5 @@
+{
+   "git.enabled": true,
+"git.path": "C:\\git.exe",
+"git-graph.repository.commits.showSignatureStatus": false
+}
