@@ -3,8 +3,10 @@ const app = express();
 import mongoose from 'mongoose';
 import userRoutes from './routes/user.route.js';
 import authRoutes from './routes/auth.route.js';
+import { signin } from './controllers/auth.controller.js';
 
 app.use(express.json());
+
 
 mongoose.connect('mongodb+srv://sayambadoni2:sayam@blogquill.nfghkwu.mongodb.net/blogquill?retryWrites=true&w=majority&appName=blogquill')
   .then(() => {
@@ -19,6 +21,9 @@ app.get('/test', function(req,res) {
         msg: 'Api is working.'
     })
 })
+
+app.post('/api/auth/signin', signin);
+
 
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
