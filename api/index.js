@@ -4,6 +4,9 @@ import mongoose from 'mongoose';
 import userRoutes from './routes/user.route.js';
 import authRoutes from './routes/auth.route.js';
 import { signin } from './controllers/auth.controller.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 app.use(express.json());
 
@@ -16,14 +19,13 @@ mongoose.connect('mongodb+srv://sayambadoni2:sayam@blogquill.nfghkwu.mongodb.net
     console.error('MongoDB connection error:', err);
   });
 
-app.get('/test', function(req,res) {
-    res.json({
-        msg: 'Api is working.'
-    })
-})
+
 
 app.post('/api/auth/signin', signin);
 
+app.listen(3000, () => {
+  console.log('Server is running on port 3000!');
+})
 
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
@@ -35,8 +37,8 @@ app.use((err, req, res, next) => {
     success: false,
     statusCode,
     message
-  }) 
-})
+  });
+});
 
-app.listen(3000);
+
 

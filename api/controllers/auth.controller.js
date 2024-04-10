@@ -28,7 +28,7 @@ export const signup = async (req, res, next) => {
 
   try {
     await newUser.save();
-    res.json({ msg: "Signup successful" });
+    res.json('Signup successful');
   } catch (error) {
     next(error);
   }
@@ -47,7 +47,6 @@ export const signin = async (req, res, next) => {
       return next(errorHandler(404, "User not found"));
     }
     const validPassword = bcryptjs.compareSync(password, validUser.password);
-    console.log(password)
     if (!validPassword) {
       return next(errorHandler(400, "Invalid password"));
     }
